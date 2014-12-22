@@ -1,0 +1,9 @@
+Package: MeTDiff
+Title: Differential analysis for MeRIP-seq data
+Version: 1.0
+Authors@R: "Xiaodong Cui <xiaodong.cui@outlook.com>, Jia Meng <jia.meng@hotmail.com> [aut, cre]"
+Description: The package is developed for the differential analysis for MeRIP-seq data of two experimental conditions to unveil the dynamics in post-transcriptional regulation of the RNA methylome. The MeTDiff R-package explicitly models the reads variation in data and also devices a more power likelihood ratio test for differential methylation site prediction (Xiaodong Cui, et al."MeTDiff: a Novel Differential RNA Methylation Analysis for MeRIP-Seq Data."). It accepts and statistically supports multiple biological replicates, internally removes PCR artifacts and multi-mapping reads, outputs exome-based binding sites (RNA methylation sites) and detects differential post-transcriptional RNA modification sites between two experimental conditions in term of percentage rather the absolute amount. The package is still under active development, and we welcome all biology and computation scientist for all kinds of collaborations and communications. Please feel free to contact Dr. Xiaodong Cui <xiaodong.cui@outlook.com> if you have any questions. Many thanks to Jia Meng for the exomePeak R package (Meng, Jia, et al. "Exome-based analysis for RNA epigenome sequencing data." Bioinformatics 29.12 (2013): 1565-1567.), which provides the base for MeTDiff. 
+Depends: R (>= 3.0.3), Rsamtools, GenomicFeatures (>= 1.0.0), rtracklayer
+License: GPL-2
+LazyData: true
+biocViews: Sequencing, HighThroughputSequencing, Methylseq, RNAseq
