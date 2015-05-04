@@ -82,8 +82,7 @@
     H[1,2] <- wght[1]*trigamma(sum(c))*m - t(postprob[,1]) %*% (.help.trigamma(as.matrix(n),sum(c)))
     H[2,1] <- H[1,2]
     eigvalue <- eigen(H)$values
-    if ( (any(beta < Npara)) | (any(alpha < Npara)) 
-         | abs(eigvalue[1]/eigvalue[2]) > 1e12 | abs(eigvalue[1]/eigvalue[2]) < 1e-12){   break  }
+    if ( (any(beta < Npara)) | (any(alpha < Npara))| (abs(eigvalue[1]/eigvalue[2]) > 1e12) | (abs(eigvalue[1]/eigvalue[2]) < 1e-12) ) {   break  }
     
     #   tmp_step <- -solve(H,tol=1e-20) %*% J 
     tmp_step <- -solve(H,J) #using gaussian smoothing
@@ -105,8 +104,7 @@
     H[2,1] <- H[1,2]
     # if the H is nearly sigular then break
     eigvalue <- eigen(H)$values
-    if ( (any(beta < Npara)) | (any(alpha < Npara))
-         | abs(eigvalue[1]/eigvalue[2]) > 1e12 | abs(eigvalue[1]/eigvalue[2]) < 1e-12)  {   
+    if  ( (any(beta < Npara)) | (any(alpha < Npara)) | (abs(eigvalue[1]/eigvalue[2]) > 1e12) | (abs(eigvalue[1]/eigvalue[2]) < 1e-12 ) ) {   
       #       alpha <- alpha0 #modified to use alpha0 to store the info
       #       beta<- beta0
       #       postprob <- postprob0
