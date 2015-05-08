@@ -15,7 +15,7 @@
   diff_score=cbind(lg.fdr, lg.p, log2.fc)
   colnames(diff_score) = c("diff.lg.fdr","diff.lg.p","diff.log2.fc");
   diff_report_total = cbind(TOTAL_PEAK_RESULT,diff_score)
-  write.table(diff_report_total,file=paste(dir,"peak.xlsx",sep="/"), sep="\t",row.names =FALSE,quote = FALSE)
+  write.table(diff_report_total,file=paste(dir,"peak.xls",sep="/"), sep="\t",row.names =FALSE,quote = FALSE)
   all_diff_peak = diff_report_total
   temp=diff_report_total[,1:12]
   names(temp)[1]=paste("#",names(temp)[1])
@@ -29,7 +29,7 @@
   }
   ID2=(abs(DIFF$DIFF$log.fc) > log(PARAMETERS$DIFF_PEAK_ABS_FOLD_CHANGE))
   ID=which(ID1 & ID2)
-  write.table(diff_report_total[ID,],file=paste(dir,"diff_peak.xlsx",sep="/"), sep="\t",row.names =FALSE,quote = FALSE)
+  write.table(diff_report_total[ID,],file=paste(dir,"diff_peak.xls",sep="/"), sep="\t",row.names =FALSE,quote = FALSE)
   sig_diff_peak = diff_report_total[ID,]
   
   # get diff bed
