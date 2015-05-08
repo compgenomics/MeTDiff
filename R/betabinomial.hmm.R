@@ -84,7 +84,7 @@
     eigvalue <- eigen(H)$values
     if ( (any(beta < Npara)) | (any(alpha < Npara))
          | (abs(eigvalue[1]/eigvalue[2]) > 1e12) | (abs(eigvalue[1]/eigvalue[2]) < 1e-12)
-         | any(eigvalue==0) ) {   break  }
+         | any(abs(eigvalue)<1e-12) ) {   break  }
     
     #   tmp_step <- -solve(H,tol=1e-20) %*% J 
     tmp_step <- -solve(H,J) #using gaussian smoothing
@@ -109,7 +109,7 @@
     
     if ( (any(beta < Npara)) | (any(alpha < Npara))
          | (abs(eigvalue[1]/eigvalue[2]) > 1e12) | (abs(eigvalue[1]/eigvalue[2]) < 1e-12)
-         | any(eigvalue==0) ) {   break  }
+         | any(abs(eigvalue)<1e-12) ) {   break  }
     
     #     tmp_step <- -solve(H,tol=1e-20) %*% J
     tmp_step <- -solve(H,J)
