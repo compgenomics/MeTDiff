@@ -5,6 +5,23 @@
   J <- matrix(0,N,1)
   H <- matrix(0,N,N)
   T <- nrow(x)
+  
+  IP_mean <- rowMeans(x)
+  INPUT_mean <- rowMeans(y)
+  nip = ncol(x)
+  nin = ncol(y)
+  # if the dimension for x and y does not match
+  if (nip > nin) {
+    avg_input <- round(matrix(rep(INPUT_mean,nip-nin),ncol=nip-nin))
+    y <- cbind(y,avg_input) 
+  }
+  else if (nip < nin){
+    avg_ip <- matrix(rep(IP_mean,nin-nip),ncol=nin-nip)
+    x <- cbind(x,avg_ip) 
+  }
+  
+  
+  
   n <- x + y
   m <- ncol(x)
   rr <- x/n
