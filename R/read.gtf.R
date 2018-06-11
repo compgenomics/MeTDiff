@@ -1,4 +1,5 @@
 
+
 # read gtf file
 .read.gtf <- function(PARAMETERS){
   # download the annotation
@@ -22,18 +23,27 @@
   }
   
   # try the internet method
+  # op <- options(warn = (-1))
+  # ID = keys(txdb, "TXID")
+  # temp = select(txdb, ID , c(columns(txdb))[c(7:8,12:14)], "TXID")
+  # options(op)
+  # temp = cbind(temp,"exon")
+  # temp=temp[,c(2,7,4,5,3,6,1)]
+  # colnames(temp)=c("chr","feature","start","stop","strand","gene","transcript")
+  # gtf=temp
+  
+  colkey <- columns(txdb)
+  select_col <- match(c("EXONCHROM","TXID","EXONSTART","EXONEND","EXONSTRAND","GENEID","TXNAME"),colkey)
   op <- options(warn = (-1))
   ID = keys(txdb, "TXID")
-  # temp = select(txdb, ID , c(cols(txdb))[c(9:12,13,16)], "TXID")
-  temp = select(txdb, ID , c(columns(txdb))[c(7:8,12:14)], "TXID")
-  options(op)
-
-  # get the anno
-  temp = cbind(temp,"exon")
-  temp=temp[,c(2,7,4,5,3,6,1)]
+  temp = select(txdb, ID , c(columns(txdb))[select_col], "TXID")
+  select_col2 <- match(c("EXONCHROM","TXID","EXONSTART","EXONEND","EXONSTRAND","GENEID","TXNAME"),names(temp))
+  temp <- temp[,select_col2]
   colnames(temp)=c("chr","feature","start","stop","strand","gene","transcript")
-  gtf=temp
-  
+  options(op)
+  temp$"feature" <- "exon";
+  gtf <- temp
+
   # return data
   return(gtf)
 }
